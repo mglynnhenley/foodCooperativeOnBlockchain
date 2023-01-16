@@ -25,7 +25,7 @@ contract Produce is Ownable{
         bytes32 _amount,
         uint256 _limitOnPendingOrders
     ) external {
-        _transferOwnership(farmer);
+        _transferOwnership(_farmer);
         limitOnPendingOrders = _limitOnPendingOrders;
         produceInformation = ProduceInformation(
             {
@@ -40,11 +40,11 @@ contract Produce is Ownable{
     /// Place an order an order of the produce
     function placeOrder() external payable {
         require(
-            msg.sender != owner,
+            msg.sender != owner(),
             "farmer cannot place order for their own produce"
         );
         require(
-            msg.value == ProduceInformation.orderSize * ProduceInformation.price,
+            msg.value == produceInformation.orderSize * produceInformation.price,
             "order must be of correct size and price"
         );
         require(orders.length < limitOnPendingOrders);

@@ -15,45 +15,36 @@ contract Market {
     // This mapping stores farmers who ahve produce on the Market
     mapping(address=> bool) public farmerList;
 
-    constructor() public {
+    constructor() {
         produceImplementation = address(new Produce());
     }
  
     function addProduce( 
         uint256 _name,
         uint256 _price,
-        uint256 _minimumOrder,
-        uint256 _maximumOrder,
-        bytes32 _amount) external returns (address produceContract) {
+        uint256 _orderSize,
+        bytes32 _amount,
+        uint256 _limitOnPendingOrders
+        ) external returns (address produceContract) {
             address newProduceClone = Clones.clone(produceImplementation);
             Produce(newProduceClone).initilize(
                  msg.sender,
                  _name,
                  _price,
-                 _minimumOrder,
-                 _maximumOrder,
-                 _amount
+                 _orderSize,
+                 _amount,
+                 _limitOnPendingOrders
             );
             produceAddresses.push(address(newProduceClone));
             produceList[address(newProduceClone)] = true;
             farmerList[msg.sender] = true;
+            return produceContract;
     }
 
     function removeProduce(address produceAddress) public {
         require(produceList[produceAddress], "This produce is not listed on the Market");
-        require(Produce(produceAddress).owner == msg.sender, "Only produce owner can remove produce from Market");
+        require(Produce(produceAddress).owner()== msg.sender, "Only produce owner can remove produce from Market");
         produceList[produceAddress] = false;
-    }
-
-    function getProduceList() public returns (address[] calldata){
-        // we want to put a limit on the number of addresses in the contract
-        address[] memory names = new address[](produceAddresses.length);
-        for (uint i = 0; i<produceAddresses.length; ++i ) {
-            if (produceList[produceAddresses[i]]) {
-                names.push(produceAddresses[i]);
-            }
-        }
-        return names;
     }
 
 }
