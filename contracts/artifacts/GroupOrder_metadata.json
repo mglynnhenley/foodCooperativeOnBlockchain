@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "produce_",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -31,20 +37,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "amount",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "farmer",
+				"name": "owner",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -58,103 +51,25 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "_farmer",
-						"type": "address"
-					},
-					{
 						"internalType": "uint256",
-						"name": "_name",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_orderSize",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "_amount",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_limitOnPendingOrders",
+						"name": "numberOfPortions",
 						"type": "uint256"
 					}
 				],
-				"name": "initilize",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "limitOnPendingOrders",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "orderSize",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "placeOrder",
-				"outputs": [],
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "portions",
+						"type": "uint256"
+					}
+				],
 				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "price",
+				"name": "portionsAgreed",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -163,6 +78,26 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "produce",
+				"outputs": [
+					{
+						"internalType": "contract Produce",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rejectOrder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -174,14 +109,8 @@
 			},
 			{
 				"inputs": [],
-				"name": "takeOrder",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "order",
-						"type": "address"
-					}
-				],
+				"name": "submitOrder",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -197,6 +126,13 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawFunds",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -205,8 +141,17 @@
 				"owner()": {
 					"details": "Returns the address of the current owner."
 				},
+				"placeOrder(uint256)": {
+					"details": "returns boolean flag variable representing whether the order has been sent",
+					"params": {
+						"numberOfPortions": "number of portions required for order"
+					}
+				},
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"submitOrder()": {
+					"details": "can only be called by the owner of the GroupOrder, this function also changes the state to closed"
 				},
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
@@ -217,11 +162,11 @@
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"placeOrder()": {
-					"notice": "Place an order an order of the produce"
+				"placeOrder(uint256)": {
+					"notice": "Function for User to pledge individual order to the group order"
 				},
-				"takeOrder()": {
-					"notice": "This allows farmers to take a single produceOrder"
+				"submitOrder()": {
+					"notice": "Owner of the food proposal contract can submit order to Market if minimum order requirement is met"
 				}
 			},
 			"version": 1
@@ -229,7 +174,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Produce.sol": "Produce"
+			"contracts/GroupOrder.sol": "GroupOrder"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -267,6 +212,14 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
+		"contracts/GroupOrder.sol": {
+			"keccak256": "0xf7a089767bae7de5a0a4eb5ead2e460e088450ff023c85d09c8aed37e6c53d3e",
+			"license": "UNLICENSD",
+			"urls": [
+				"bzz-raw://22c2fa0c3f6323f244c33eebef477f046455d4715c8858112edf59ace4d69fc8",
+				"dweb:/ipfs/QmQGctM3fjmVdeSqggkaWFKRHN3NoTHQop2Qvp7c8wxxKR"
+			]
+		},
 		"contracts/Market.sol": {
 			"keccak256": "0x5bc0df34731d38674d242450beba5741042ad44b220891a472a27cda584cf5b6",
 			"license": "UNLICENSED",
@@ -276,11 +229,11 @@
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0xa00bb0d1cf1983ae720f113db65afeaa6d910c09e7cf888c2be79e19fd8a9e8c",
+			"keccak256": "0x1f357eccc74a549534050771420d20c13b982281a499001bb2f36d2fd88167f9",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://8d487eacf50405cf9deb075e4d936ff520e6c99c36f40defcfabaa1040ae323d",
-				"dweb:/ipfs/Qme9gRPd4Cu5uYRGuqHj2ZZPWDqyEMCLZgFMPWGadzk7vp"
+				"bzz-raw://65adc7d24a08dacccfb1985cf77a048d4bbdae3e73d1e6bd85fa435e7e7150b0",
+				"dweb:/ipfs/QmX624UHdK9kJ931wbp6Dmb9faVEq6tDn3vgdCahe6qzfa"
 			]
 		}
 	},

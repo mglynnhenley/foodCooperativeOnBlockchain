@@ -8,28 +8,38 @@ contract Produce is Ownable{
     address[] private orders;
     uint256 public limitOnPendingOrders;
 
-    // This is the information for the produce contract 
     uint256 public name;
-    uint256 public pricePerPortion;
-    uint256 public portionsPerOrder;
-    bytes32 public amountPerPortion;
+    uint256 public price;
+    uint256 public orderSize;
+    bytes32 public amount;
 
+    enum State {
+        UNINITIALIZED,
+        PRODUCESET
+    }
+    State private state;
+
+    constructor() {
+        state = State.UNINITIALIZED;
+    }
 
     function initilize(
         address _farmer,
         uint256 _name,
-        uint256 _pricePerPortion,
-        uint256 _portionsPerOrder,
-        bytes32 _amountPerPortion,
+        uint256 _price,
+        uint256 _orderSize,
+        bytes32 _amount,
         uint256 _limitOnPendingOrders
     ) external {
+        require(state==State.UNINITIALIZED, "This produce has already been initilized");
         _transferOwnership(_farmer);
-        name = _name;
-        pricePerPortion = _pricePerPortion;
-        portionsPerOrder = _portionsPerOrder;
-        amountPerPortion = _amountPerPortion;
         limitOnPendingOrders = _limitOnPendingOrders;
-        }
+        name = _name;
+        price = _price;
+        orderSize = _orderSize;
+        amount = _amount;
+        state = State.PRODUCESET;
+    }
 
     /// Place an order an order of the produce
     function placeOrder() external payable {
@@ -38,7 +48,7 @@ contract Produce is Ownable{
             "farmer cannot place order for their own produce"
         );
         require(
-            msg.value == portionsPerOrder * pricePerPortion,
+            msg.value == orderSize * price,
             "order must be of correct size and price"
         );
         require(orders.length < limitOnPendingOrders);
@@ -52,4 +62,5 @@ contract Produce is Ownable{
         orders.pop();
         return orderToTake;
     } 
+
 }

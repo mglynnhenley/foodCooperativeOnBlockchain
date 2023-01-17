@@ -28,7 +28,7 @@ contract GroupOrder is Ownable {
     function submitOrder() external onlyOwner {
         require(state == State.OPEN);
         require(
-            portionsAgreed == produce.portionsPerOrder()
+            portionsAgreed == produce.orderSize()
         );
         state = State.CLOSED;
         produce.placeOrder();
@@ -41,12 +41,13 @@ contract GroupOrder is Ownable {
         uint256 numberOfPortions
     ) external payable returns (uint portions) {
         require(state == State.OPEN);
-        require(produce.portionsPerOrder() - numberOfPortions >= numberOfPortions);
-        require(numberOfPortions * produce.pricePerPortion() == msg.value);
+        require(produce.orderSize() - numberOfPortions >= numberOfPortions);
+        require(numberOfPortions * produce.price() == msg.value);
 
-        orderList[msg.sender] += portions;
+        orderList.push(msg.sender);
+        orders[msg.sender] += portions;
         portionsAgreed += portions;
-        return orderList[msg.sender];
+        return orders[msg.sender];
     }
 
     function rejectOrder() external {
@@ -59,9 +60,9 @@ contract GroupOrder is Ownable {
 
     function withdrawFunds() external {
         require(state == State.REJECTED, "order has not been rejected");
-        require(orderList[msg.sender] > 0, "customer has no outstanding balance to refund");
-        uint amount = orderList[msg.sender];
-        orderList[msg.sender] = 0;
+        require(orders[msg.sender] > 0, "customer has no outstanding balance to refund");
+        uint amount = orders[msg.sender];
+        orders[msg.sender] = 0;
         payable(msg.sender).transfer(amount);
     }
 }
