@@ -63,18 +63,21 @@ contract GroupOrder is Ownable {
     }
 
     function notifyOrderSent() external {
+        require(state == State.ORDERPENDING);
         require(
             msg.sender == produce.farmer(),
             "Only the farmer of the produce can notify that the order has been sent"
         );
-
+        state = State.ORDER_SENT;
     }
 
     function notifyOrderWithGroupLeader() external {
+        require(state == State.ORDER_SENT);
         require(
             msg.sender == produce.deliverer(),
             "Only the deliverer of the produce can notify that the order has been delivered"
         );
+        state = State.ORDER_WITH_GROUP_LEADER;
         payable(produce.farmer()).transfer(portionsAgreed*produce.price());
     }
 
