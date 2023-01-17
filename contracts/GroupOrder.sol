@@ -75,6 +75,7 @@ contract GroupOrder is Ownable {
             msg.sender == produce.deliverer(),
             "Only the deliverer of the produce can notify that the order has been delivered"
         );
+        payable(produce.farmer()).transfer(portionsAgreed*produce.price());
     }
 
     function withdrawFunds() external {
