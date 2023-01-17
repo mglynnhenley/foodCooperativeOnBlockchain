@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Produce is Ownable{
     address public farmer;
+    address public market;
     address[] private orders;
     uint256 public limitOnPendingOrders;
 
@@ -12,6 +13,7 @@ contract Produce is Ownable{
     uint256 public price;
     uint256 public orderSize;
     bytes32 public amount;
+    address public deliverer;
 
     enum State {
         UNINITIALIZED,
@@ -29,15 +31,18 @@ contract Produce is Ownable{
         uint256 _price,
         uint256 _orderSize,
         bytes32 _amount,
-        uint256 _limitOnPendingOrders
+        uint256 _limitOnPendingOrders,
+        address _delivererOfProduce
     ) external {
         require(state==State.UNINITIALIZED, "This produce has already been initilized");
         _transferOwnership(_farmer);
+        market = msg.sender;
         limitOnPendingOrders = _limitOnPendingOrders;
         name = _name;
         price = _price;
         orderSize = _orderSize;
         amount = _amount;
+        deliverer = _delivererOfProduce;
         state = State.PRODUCESET;
     }
 

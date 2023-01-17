@@ -24,7 +24,8 @@ contract Market {
         uint256 _price,
         uint256 _orderSize,
         bytes32 _amount,
-        uint256 _limitOnPendingOrders
+        uint256 _limitOnPendingOrders,
+        address _delivererOfProduce,
         ) external returns (address produceContract) {
             address newProduceClone = Clones.clone(produceImplementation);
             Produce(newProduceClone).initilize(
@@ -33,7 +34,8 @@ contract Market {
                  _price,
                  _orderSize,
                  _amount,
-                 _limitOnPendingOrders
+                 _limitOnPendingOrders,
+                 _delivererOfProduce
             );
             produceAddresses.push(address(newProduceClone));
             produceList[address(newProduceClone)] = true;
@@ -46,5 +48,6 @@ contract Market {
         require(Produce(produceAddress).owner()== msg.sender, "Only produce owner can remove produce from Market");
         produceList[produceAddress] = false;
     }
+
 
 }

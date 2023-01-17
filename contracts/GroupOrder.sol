@@ -5,13 +5,17 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract GroupOrder is Ownable {
 
+
     Produce public produce;
     uint public portionsAgreed; 
 
     enum State {
         OPEN,
-        CLOSED,
-        REJECTED
+        ORDERPENDING,
+        REJECTED,
+        ORDER_SENT,
+        ORDER_WITH_GROUP_LEADER,
+        ORDER_DISTRIBUTED
     }
     State private state;
 
@@ -30,7 +34,7 @@ contract GroupOrder is Ownable {
         require(
             portionsAgreed == produce.orderSize()
         );
-        state = State.CLOSED;
+        state = State.ORDERPENDING;
         produce.placeOrder();
     }
 
@@ -56,6 +60,21 @@ contract GroupOrder is Ownable {
             "Only the farmer of the produce can reject the order"
         );
         state = State.REJECTED;
+    }
+
+    function notifyOrderSent() external {
+        require(
+            msg.sender == produce.farmer(),
+            "Only the farmer of the produce can notify that the order has been sent"
+        );
+
+    }
+
+    function notifyOrderWithGroupLeader() external {
+        require(
+            msg.sender == produce.deliverer(),
+            "Only the deliverer of the produce can notify that the order has been delivered"
+        );
     }
 
     function withdrawFunds() external {

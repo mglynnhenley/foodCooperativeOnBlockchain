@@ -108,6 +108,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "market",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "name",
 				"outputs": [
 					{
@@ -276,11 +289,11 @@
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0xa00bb0d1cf1983ae720f113db65afeaa6d910c09e7cf888c2be79e19fd8a9e8c",
+			"keccak256": "0xa1d48356d5af8b90d19bd3f64ebdd869e593bc4fcc8a78b31518a6458aca2981",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://8d487eacf50405cf9deb075e4d936ff520e6c99c36f40defcfabaa1040ae323d",
-				"dweb:/ipfs/Qme9gRPd4Cu5uYRGuqHj2ZZPWDqyEMCLZgFMPWGadzk7vp"
+				"bzz-raw://f8193ec33d24ca19b292bccf5330d733a4e63778b05aef7907c9668d86fb41c3",
+				"dweb:/ipfs/QmbNxET2gYkmwmNFPZe8dacTGURC4kmBaq5rU4eJRcdXF9"
 			]
 		}
 	},
