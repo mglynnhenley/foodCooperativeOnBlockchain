@@ -28,7 +28,7 @@ contract GroupOrder is Ownable {
     function submitOrder() external onlyOwner {
         require(state == State.OPEN);
         require(
-            portionsAgreed == produce.produceInformation[3]
+            portionsAgreed == produce.portionsPerOrder()
         );
         state = State.CLOSED;
         produce.placeOrder();
@@ -41,8 +41,8 @@ contract GroupOrder is Ownable {
         uint256 numberOfPortions
     ) external payable returns (uint portions) {
         require(state == State.OPEN);
-        require(produce.produceInformation.orderSize() - numberOfPortions >= numberOfPortions);
-        require(numberOfPortions * produce.produceInformation.price() == msg.value);
+        require(produce.portionsPerOrder() - numberOfPortions >= numberOfPortions);
+        require(numberOfPortions * produce.pricePerPortion() == msg.value);
 
         orderList[msg.sender] += portions;
         portionsAgreed += portions;
