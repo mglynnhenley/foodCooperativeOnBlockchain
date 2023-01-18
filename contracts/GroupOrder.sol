@@ -11,7 +11,7 @@ contract GroupOrder is Ownable {
 
     enum State {
         OPEN,
-        ORDERPENDING,
+        ORDER_PENDING,
         REJECTED,
         ORDER_SENT,
         ORDER_WITH_GROUP_LEADER,
@@ -63,7 +63,8 @@ contract GroupOrder is Ownable {
     }
 
     function notifyOrderSent() external {
-        require(state == State.ORDERPENDING);
+        require(state == State.ORDER_
+        PENDING);
         require(
             msg.sender == produce.farmer(),
             "Only the farmer of the produce can notify that the order has been sent"
