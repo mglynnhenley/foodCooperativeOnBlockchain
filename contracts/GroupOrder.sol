@@ -2,9 +2,8 @@
 pragma solidity ^0.8.0;
 import "./Produce.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-//test1
-contract GroupOrder is Ownable {
 
+contract GroupOrder is Ownable {
 
     Produce public produce;
     uint public portionsAgreed; 
@@ -27,20 +26,8 @@ contract GroupOrder is Ownable {
         state = State.OPEN;
     }
 
-    /// Owner of the food proposal contract can submit order to Market if minimum order requirement is met
-    /// @dev can only be called by the owner of the GroupOrder, this function also changes the state to closed
-    function submitOrder() external onlyOwner {
-        require(state == State.OPEN);
-        require(
-            portionsAgreed == produce.orderSize()
-        );
-        state = State.ORDERPENDING;
-        produce.placeOrder();
-    }
+    // STATE==OPEN
 
-    /// Function for User to pledge individual order to the group order
-    /// @param numberOfPortions number of portions required for order
-    /// @dev returns boolean flag variable representing whether the order has been sent
     function placeOrder(
         uint256 numberOfPortions
     ) external payable returns (uint portions) {
@@ -54,7 +41,29 @@ contract GroupOrder is Ownable {
         return orders[msg.sender];
     }
 
+    function submitOrder() external onlyOwner {
+        require(state == State.OPEN);
+        require(
+            portionsAgreed == produce.orderSize()
+        );
+        state = State.ORDERPENDING;
+        produce.placeOrder();
+    }
+
+    // STATE==REJECTED
+
+    function withdrawFunds() external {
+        require(state == State.REJECTED, "order has not been rejected");
+        require(orders[msg.sender] > 0, "customer has no outstanding balance to refund");
+        uint amount = orders[msg.sender];
+        orders[msg.sender] = 0;
+        payable(msg.sender).transfer(amount);
+    }
+
+    // STATE==ORDER_PENDING
+
     function rejectOrder() external {
+        require(state == State.ORDER_PENDING);
         require(
             msg.sender == produce.farmer(),
             "Only the farmer of the produce can reject the order"
@@ -63,14 +72,15 @@ contract GroupOrder is Ownable {
     }
 
     function notifyOrderSent() external {
-        require(state == State.ORDER_
-        PENDING);
+        require(state == State.ORDER_PENDING);
         require(
             msg.sender == produce.farmer(),
             "Only the farmer of the produce can notify that the order has been sent"
         );
         state = State.ORDER_SENT;
     }
+
+    // STATE==ORDER_SENT
 
     function notifyOrderWithGroupLeader() external {
         require(state == State.ORDER_SENT);
@@ -82,11 +92,4 @@ contract GroupOrder is Ownable {
         payable(produce.farmer()).transfer(portionsAgreed*produce.price());
     }
 
-    function withdrawFunds() external {
-        require(state == State.REJECTED, "order has not been rejected");
-        require(orders[msg.sender] > 0, "customer has no outstanding balance to refund");
-        uint amount = orders[msg.sender];
-        orders[msg.sender] = 0;
-        payable(msg.sender).transfer(amount);
-    }
 }
