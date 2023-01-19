@@ -92,4 +92,9 @@ contract GroupOrder is Ownable {
         payable(produce.farmer()).transfer(portionsAgreed*produce.price());
     }
 
+    function notifyOrderDistributed() onlyOwner {
+            require(state == State.ORDER_WITH_GROUP_LEADER);
+            state == State.ORDER_DISTRIBUTED;
+    }
+
 }

@@ -20,9 +20,10 @@ contract Ballot {
 
     
 
-    constructor(address groupOrder, uint ballotLengthInDays) {
+    constructor(uint ballotLengthInDays) {
         stage = Stage.OPEN;
         votesCast = 0;
+        groupOrder = msg.sender;
         endTime = creationTime + ballotLengthInDays;
     }
 
@@ -42,16 +43,12 @@ contract Ballot {
         voted[address] = true;
     }
 
-    function votingEnd() external {
-        require(stage == Stage.OPEN);
+    function wasTheProduceDelivered() external returns (bool) {
         require(block.timestamp>endTime, "voting not ended yet");
-        stage = Stage.CLOSED;
-        return (votesFor, votesAgainst);
-    }
-
-    function wasTheProduceDelivered() external view returns (bool) {
-        require(stage = Stage.CLOSED);
-        return votesFor>votesAgainst;
+        if (stage == Stage.OPEN) {
+            stage == Stage.CLOSED;
+        }
+        return votesFor>=votesAgainst;
     }
 
 } 
