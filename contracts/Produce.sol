@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 import "./Market.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ProduceWithNoLeader is Ownable{
+contract Produce is Ownable{
     address public farmer;
     address public market;
     address[] private orders;

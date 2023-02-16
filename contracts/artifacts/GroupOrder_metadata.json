@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.17+commit.8df45f5f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -117,7 +117,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/GroupOrderWithNoLeader.sol": "GroupOrder"
+			"contracts/GroupOrder.sol": "GroupOrder"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -155,7 +155,7 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
-		"contracts/GroupOrderWithNoLeader.sol": {
+		"contracts/GroupOrder.sol": {
 			"keccak256": "0xfd765a5d5d15428a749367e8b5150e7b59c23a72041623ce87ce6121b500a503",
 			"license": "UNLICENSD",
 			"urls": [
@@ -164,19 +164,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x343f4ee9a024a72d92b999d664c85dda0c2deb87745ac85c08ca5afe22fd0575",
+			"keccak256": "0xf7369e73204c85c22312cf4be74ecde68a83c9c165090bf3067f85cedd263a3d",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://0a65ed10857fe484b3d046e50a023869f8beb6f2fc034bda46584fa015ce25c6",
-				"dweb:/ipfs/QmWBGk7FECgc9Sx6KVgm677oM8WpnVama1hYTAFVDV25vY"
+				"bzz-raw://7d7423edb5b850b7215e4ec9d9ce409a3bacd6fba5a4ed23b18f91dde07a8090",
+				"dweb:/ipfs/QmUq6H2QNzBBUGmHaS9PgtMU1xSojivGuaqtSvs3Yedxkk"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0x7112b686fb1026a05641595015cd0d5129f07d229a1a1511814903a2adefe1d3",
+			"keccak256": "0xa1d48356d5af8b90d19bd3f64ebdd869e593bc4fcc8a78b31518a6458aca2981",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://5f946d3545dbe9e66d787a52f03b0be25ee655ca6dde18d5d2a50431729c335c",
-				"dweb:/ipfs/Qmdu3QMqsTNN5Lt9yNyTrV2h4xdX8ZZMSoZtovqhe5Mhf5"
+				"bzz-raw://f8193ec33d24ca19b292bccf5330d733a4e63778b05aef7907c9668d86fb41c3",
+				"dweb:/ipfs/QmbNxET2gYkmwmNFPZe8dacTGURC4kmBaq5rU4eJRcdXF9"
 			]
 		}
 	},

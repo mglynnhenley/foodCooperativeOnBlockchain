@@ -16,7 +16,7 @@ contract Market {
     mapping(address=> bool) public farmerList;
 
     constructor() {
-        produceImplementation = address(new ProduceWithNoLeader());
+        produceImplementation = address(new Produce());
     }
  
     function addProduce( 

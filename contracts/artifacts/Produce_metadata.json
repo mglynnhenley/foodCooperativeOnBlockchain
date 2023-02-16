@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.17+commit.8df45f5f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -281,11 +281,11 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x5bc0df34731d38674d242450beba5741042ad44b220891a472a27cda584cf5b6",
+			"keccak256": "0xf7369e73204c85c22312cf4be74ecde68a83c9c165090bf3067f85cedd263a3d",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://56a9948afeab4dd8736bf31fcf6a809c07e266c98fc5a87d38e9a408fa643b2e",
-				"dweb:/ipfs/QmeumVxD47qM7MMqbuScMXBzSH5xwnhWgKJx1Av44nbRJt"
+				"bzz-raw://7d7423edb5b850b7215e4ec9d9ce409a3bacd6fba5a4ed23b18f91dde07a8090",
+				"dweb:/ipfs/QmUq6H2QNzBBUGmHaS9PgtMU1xSojivGuaqtSvs3Yedxkk"
 			]
 		},
 		"contracts/Produce.sol": {
