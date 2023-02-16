@@ -6,85 +6,82 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "produce_",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
 			{
-				"inputs": [],
-				"name": "notifyOrderSent",
-				"outputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_name",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_orderSize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_amount",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_limitOnPendingOrders",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_delivererOfProduce",
+						"type": "address"
+					}
+				],
+				"name": "addProduce",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "produceContract",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "numberOfPortions",
-						"type": "uint256"
-					}
-				],
-				"name": "placeOrder",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "portions",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "portionsAgreed",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "produce",
-				"outputs": [
-					{
-						"internalType": "contract Produce",
+						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
 				],
+				"name": "farmerList",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
 				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "rejectOrder",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "submitOrder",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "withdrawFunds",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "produceAddress",
+						"type": "address"
+					}
+				],
+				"name": "removeProduce",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -92,32 +89,18 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"placeOrder(uint256)": {
-					"details": "returns boolean flag variable representing whether the order has been sent",
-					"params": {
-						"numberOfPortions": "number of portions required for order"
-					}
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {
-				"placeOrder(uint256)": {
-					"notice": "Function for User to pledge individual order to the group order"
-				},
-				"submitOrder()": {
-					"notice": "anyone can submit the order if the portions agreed has reached the max size"
-				}
-			},
+			"methods": {},
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/GroupOrderWithNoLeader.sol": "GroupOrder"
+			"contracts/Market.sol": "Market"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -155,20 +138,12 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
-		"contracts/GroupOrderWithNoLeader.sol": {
-			"keccak256": "0xfd765a5d5d15428a749367e8b5150e7b59c23a72041623ce87ce6121b500a503",
-			"license": "UNLICENSD",
-			"urls": [
-				"bzz-raw://eda17ba730325ad3b771c18adeae379a77b1f17f31b018ff9c9b96e095bdcff3",
-				"dweb:/ipfs/QmZnpm6Zqg8JLFGkVJ4brj7BHph2LBjopPWp81GwVMcd1f"
-			]
-		},
 		"contracts/Market.sol": {
-			"keccak256": "0x343f4ee9a024a72d92b999d664c85dda0c2deb87745ac85c08ca5afe22fd0575",
+			"keccak256": "0x01b9d55598089aab145943621dce6ff8e0021d8f4e267e0c77901587ad86e107",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://0a65ed10857fe484b3d046e50a023869f8beb6f2fc034bda46584fa015ce25c6",
-				"dweb:/ipfs/QmWBGk7FECgc9Sx6KVgm677oM8WpnVama1hYTAFVDV25vY"
+				"bzz-raw://330f7397cc0512c0de035efca8c236c2cba89d46a0da0312ca16555f6d8e496c",
+				"dweb:/ipfs/QmWG4U6rJyob3JzknkJNdgp1uaDcP5fQwvXQdx7EmwqPcM"
 			]
 		},
 		"contracts/Produce.sol": {

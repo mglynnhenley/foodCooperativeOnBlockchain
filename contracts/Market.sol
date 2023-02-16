@@ -12,11 +12,11 @@ contract Market {
 
     // This mapping stores avaliable produce
     mapping(address=> bool) produceList;
-    // This mapping stores farmers who ahve produce on the Market
+    // This mapping stores farmers who have produce on the Market
     mapping(address=> bool) public farmerList;
 
     constructor() {
-        produceImplementation = address(new Produce());
+        produceImplementation = address(new ProduceWithNoLeader());
     }
  
     function addProduce( 
@@ -24,8 +24,7 @@ contract Market {
         uint256 _price,
         uint256 _orderSize,
         bytes32 _amount,
-        uint256 _limitOnPendingOrders,
-        address _delivererOfProduce,
+        uint256 _limitOnPendingOrders
         ) external returns (address produceContract) {
             address newProduceClone = Clones.clone(produceImplementation);
             Produce(newProduceClone).initilize(
@@ -34,8 +33,7 @@ contract Market {
                  _price,
                  _orderSize,
                  _amount,
-                 _limitOnPendingOrders,
-                 _delivererOfProduce
+                 _limitOnPendingOrders
             );
             produceAddresses.push(address(newProduceClone));
             produceList[address(newProduceClone)] = true;

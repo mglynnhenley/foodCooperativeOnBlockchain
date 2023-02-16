@@ -3,8 +3,7 @@ pragma solidity ^0.8.0;
 import "./Produce.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract GroupOrder is Ownable {
-
+contract GroupOrder {
 
     Produce public produce;
     uint public portionsAgreed; 
@@ -13,9 +12,7 @@ contract GroupOrder is Ownable {
         OPEN,
         ORDER_PENDING,
         REJECTED,
-        ORDER_SENT,
-        ORDER_WITH_GROUP_LEADER,
-        ORDER_DISTRIBUTED
+        ORDER_SENT
     }
     State private state;
 
@@ -27,14 +24,13 @@ contract GroupOrder is Ownable {
         state = State.OPEN;
     }
 
-    /// Owner of the food proposal contract can submit order to Market if minimum order requirement is met
-    /// @dev can only be called by the owner of the GroupOrder, this function also changes the state to closed
-    function submitOrder() external onlyOwner {
+    /// anyone can submit the order if the portions agreed has reached the max size
+    function submitOrder() external {
         require(state == State.OPEN);
         require(
             portionsAgreed == produce.orderSize()
         );
-        state = State.ORDERPENDING;
+        state = State.ORDER_PENDING;
         produce.placeOrder();
     }
 
@@ -54,6 +50,7 @@ contract GroupOrder is Ownable {
         return orders[msg.sender];
     }
 
+//Function for Farmer to reject Order 
     function rejectOrder() external {
         require(
             msg.sender == produce.farmer(),
@@ -62,26 +59,19 @@ contract GroupOrder is Ownable {
         state = State.REJECTED;
     }
 
+// Function for farmer to notify the order is sent
+// In the version without voting this will be enough to transfer the funds to the farmer
     function notifyOrderSent() external {
-        require(state == State.ORDER_
-        PENDING);
+        require(state == State.ORDER_PENDING);
         require(
             msg.sender == produce.farmer(),
             "Only the farmer of the produce can notify that the order has been sent"
         );
         state = State.ORDER_SENT;
-    }
-
-    function notifyOrderWithGroupLeader() external {
-        require(state == State.ORDER_SENT);
-        require(
-            msg.sender == produce.deliverer(),
-            "Only the deliverer of the produce can notify that the order has been delivered"
-        );
-        state = State.ORDER_WITH_GROUP_LEADER;
         payable(produce.farmer()).transfer(portionsAgreed*produce.price());
     }
 
+//Function for members of the order to withdraw funds if order is rejected
     function withdrawFunds() external {
         require(state == State.REJECTED, "order has not been rejected");
         require(orders[msg.sender] > 0, "customer has no outstanding balance to refund");
