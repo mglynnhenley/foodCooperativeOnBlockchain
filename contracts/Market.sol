@@ -23,7 +23,7 @@ contract Market {
         uint256 _name,
         uint256 _price,
         uint256 _orderSize,
-        bytes32 _amount,
+        uint256 _amount,
         uint256 _limitOnPendingOrders
         ) external returns (address produceContract) {
             address newProduceClone = Clones.clone(produceImplementation);
@@ -38,7 +38,7 @@ contract Market {
             produceAddresses.push(address(newProduceClone));
             produceList[address(newProduceClone)] = true;
             farmerList[msg.sender] = true;
-            return produceContract;
+            return address(newProduceClone);
     }
 
     function removeProduce(address produceAddress) public {

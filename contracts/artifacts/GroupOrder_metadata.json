@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.17+commit.8df45f5f"
+		"version": "0.8.7+commit.e28d00a7"
 	},
 	"language": "Solidity",
 	"output": {
@@ -21,6 +21,25 @@
 				"name": "notifyOrderSent",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "orderList",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -73,6 +92,19 @@
 				"name": "rejectOrder",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "state",
+				"outputs": [
+					{
+						"internalType": "enum GroupOrder.State",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -156,27 +188,27 @@
 			]
 		},
 		"contracts/GroupOrder.sol": {
-			"keccak256": "0xfd765a5d5d15428a749367e8b5150e7b59c23a72041623ce87ce6121b500a503",
+			"keccak256": "0xc8ccc954ead833c9a18ed68ccf58857bd6523289b447beee8a4675fc9e8f52bb",
 			"license": "UNLICENSD",
 			"urls": [
-				"bzz-raw://eda17ba730325ad3b771c18adeae379a77b1f17f31b018ff9c9b96e095bdcff3",
-				"dweb:/ipfs/QmZnpm6Zqg8JLFGkVJ4brj7BHph2LBjopPWp81GwVMcd1f"
+				"bzz-raw://70663be22a6aa6c8a70942db719d6bdc65931cb5308dc5d78ebf43227986d956",
+				"dweb:/ipfs/QmZmPhyZRBX7MQUVAUKTkWGieZdvk7Da9z8tv3e6XpT331"
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0xf7369e73204c85c22312cf4be74ecde68a83c9c165090bf3067f85cedd263a3d",
+			"keccak256": "0x2b7d71f5bc31b49ef09f4db2101f4a8c94fd5ec387851ed34145c8eaebe7d735",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://7d7423edb5b850b7215e4ec9d9ce409a3bacd6fba5a4ed23b18f91dde07a8090",
-				"dweb:/ipfs/QmUq6H2QNzBBUGmHaS9PgtMU1xSojivGuaqtSvs3Yedxkk"
+				"bzz-raw://916a8eef83f80579a6958ba9ee60a84c09f5a57a4e5b936bd809a58171c8c4eb",
+				"dweb:/ipfs/QmaaysvLEYcfZMVsrDr2Fmw7pmtiLP3mZS9N2cNPfb6NS4"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0xa1d48356d5af8b90d19bd3f64ebdd869e593bc4fcc8a78b31518a6458aca2981",
+			"keccak256": "0x65baef23aee1367d790f0813939315913e5b9b8fc022c903c8fa6b0f4f205385",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://f8193ec33d24ca19b292bccf5330d733a4e63778b05aef7907c9668d86fb41c3",
-				"dweb:/ipfs/QmbNxET2gYkmwmNFPZe8dacTGURC4kmBaq5rU4eJRcdXF9"
+				"bzz-raw://f2e0959b5d689b1cd7f5705c4772334b7a6de6e7db6dde4e8775e31a51458b4e",
+				"dweb:/ipfs/QmXmX89MBzYKf9pNXSsrxnpMgKmEyGg4XE9S6GTbJxek5r"
 			]
 		}
 	},

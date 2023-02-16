@@ -14,10 +14,10 @@ contract GroupOrder {
         REJECTED,
         ORDER_SENT
     }
-    State private state;
+    State public state;
 
     mapping(address => uint) orders;
-    address[] orderList;
+    address[] public orderList;
 
     constructor(address produce_) {
         produce = Produce(produce_);
@@ -43,7 +43,6 @@ contract GroupOrder {
         require(state == State.OPEN);
         require(produce.orderSize() - numberOfPortions >= numberOfPortions);
         require(numberOfPortions * produce.price() == msg.value);
-
         orderList.push(msg.sender);
         orders[msg.sender] += portions;
         portionsAgreed += portions;
