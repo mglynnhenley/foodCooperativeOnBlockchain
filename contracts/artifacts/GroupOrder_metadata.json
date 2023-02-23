@@ -11,10 +11,28 @@
 						"internalType": "address",
 						"name": "produce_",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timeLimit_",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "endTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
 				"inputs": [],
@@ -96,6 +114,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "startTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "state",
 				"outputs": [
 					{
@@ -110,6 +141,13 @@
 			{
 				"inputs": [],
 				"name": "submitOrder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "timeOutGroupOrder",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -188,11 +226,11 @@
 			]
 		},
 		"contracts/GroupOrder.sol": {
-			"keccak256": "0xc8ccc954ead833c9a18ed68ccf58857bd6523289b447beee8a4675fc9e8f52bb",
+			"keccak256": "0xf3b58e6ac9d5e88140fb5f4415e5dd83468a40954b1a22f6e191cfdc0c0ef3d7",
 			"license": "UNLICENSD",
 			"urls": [
-				"bzz-raw://70663be22a6aa6c8a70942db719d6bdc65931cb5308dc5d78ebf43227986d956",
-				"dweb:/ipfs/QmZmPhyZRBX7MQUVAUKTkWGieZdvk7Da9z8tv3e6XpT331"
+				"bzz-raw://5fa27e79e853cf56bf8c29a0c18788840072b76706823351f0ff83d94f00f017",
+				"dweb:/ipfs/QmRVNULEW3VaBXp7Nrzf6r3Gb66eUDZjQTJa7XLQqeE9eM"
 			]
 		},
 		"contracts/Market.sol": {
