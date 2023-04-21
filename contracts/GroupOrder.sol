@@ -4,11 +4,15 @@ import "./Produce.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract GroupOrder {
+    event Log(string message); // change this when you put reasons in
+
     Produce public produce;
     uint256 public portionsAgreed;
+    uint256 public portionsPerPerson;
     uint256 public startTime;
     uint256 public endTime;
-    uint256 public constant minimumTimeLimit = 25 * ( 3 * 10 ** 6) ; // 25 hours or 1500 minutes in milliseconds
+    uint256 public constant minimumTimeLimit = 25 * (3 * 10**6); // 25 hours or 1500 minutes in milliseconds
+    bytes32 public groupOrderHash; // This is a hash of the details of the group order provided off chain such as delivery location and pick up instructions 
 
     enum State {
         OPEN,
@@ -18,11 +22,11 @@ contract GroupOrder {
     }
     State public state;
 
-    mapping(address => uint256) orders;
+    mapping(address => bool) orders;
     address[] public orderList;
 
     constructor(address produce_, uint256 timeLimit_) {
-        require(timeLimit_ > minimumTimeLimit ); 
+        require(timeLimit_ > minimumTimeLimit, "time limit not high enough");
         produce = Produce(produce_);
         startTime = block.timestamp;
         endTime = startTime + timeLimit_;
@@ -30,30 +34,42 @@ contract GroupOrder {
     }
 
     /// anyone can submit the order if the portions agreed has reached the max size
+    // if there is not enough space then users are going to have to keep trying
     function submitOrder() external {
         require(state == State.OPEN);
         require(portionsAgreed == produce.orderSize());
-        state = State.PENDING;
-        produce.placeOrder();
+        try produce.placeOrder() {
+                    state = State.PENDING;
+                } catch Error(string memory reason) {
+                    emit Log(reason);
+                }
     }
 
     /// Function for User to pledge individual order to the group order
-    /// @param numberOfPortions number of portions required for order
+    /// One person gets one order to ensure equal economic participation
     /// @dev returns boolean flag variable representing whether the order has been sent
-    function placeOrder(uint256 numberOfPortions)
+    function placeOrder()
         external
         payable
-        returns (uint256 portions)
+        returns (bool orderplaced)
     {
         require(state == State.OPEN);
-        require(produce.orderSize() - numberOfPortions >= numberOfPortions);
-        require(numberOfPortions * produce.price() == msg.value);
+        require(produce.orderSize() - 1 <= portionsAgreed);
+        require(produce.price() == msg.value);
         if (block.timestamp > endTime) {
             state = State.REJECTED;
         } else {
             orderList.push(msg.sender);
-            orders[msg.sender] += portions;
-            portionsAgreed += portions;
+            orders[msg.sender] = true;
+            portionsAgreed += 1;
+            // The order will be placed as soon as the required order size is met
+            if (portionsAgreed == produce.orderSize()) {
+                try produce.placeOrder() {
+                    state = State.PENDING;
+                } catch Error(string memory reason) {
+                    emit Log(reason);
+                }
+            }
             return orders[msg.sender];
         }
     }
@@ -68,7 +84,7 @@ contract GroupOrder {
     }
 
     // Function for farmer to notify the order is sent
-    function notifyOrderSent() external {
+    function acceptOrder() external {
         require(state == State.PENDING);
         require(
             msg.sender == produce.farmer(),
@@ -82,12 +98,11 @@ contract GroupOrder {
     function withdrawFunds() external {
         require(state == State.REJECTED, "order has not been rejected");
         require(
-            orders[msg.sender] > 0,
+            orders[msg.sender],
             "customer has no outstanding balance to refund"
         );
-        uint256 amount = orders[msg.sender];
-        orders[msg.sender] = 0;
-        payable(msg.sender).transfer(amount);
+        orders[msg.sender] = false;
+        payable(msg.sender).transfer(produce.price());
     }
 
     // function for the timeout of the GroupOrder

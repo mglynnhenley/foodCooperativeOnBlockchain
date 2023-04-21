@@ -9,7 +9,7 @@ contract Produce is Ownable{
     address[] private orders;
     uint256 public limitOnPendingOrders;
 
-    uint256 public produceHash;
+    bytes32 public produceHash;
     uint256 public price;
     uint256 public orderSize;
 
@@ -26,7 +26,7 @@ contract Produce is Ownable{
 
     function initilize(
         address _farmer,
-        uint256 _produceHash,
+        bytes32 _produceHash,
         uint256 _price,
         uint256 _orderSize,
         uint256 _limitOnPendingOrders
@@ -51,7 +51,7 @@ contract Produce is Ownable{
             msg.value == orderSize * price,
             "order must be of correct size and price"
         );
-        require(orders.length < limitOnPendingOrders);
+        require(orders.length < limitOnPendingOrders, "too many orders pending for this produce");
         orders.push(msg.sender);
     }
 

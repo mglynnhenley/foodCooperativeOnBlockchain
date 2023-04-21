@@ -21,7 +21,7 @@ contract Market {
     }
  
     function addProduce( 
-        uint256 _produceHash,
+        bytes32 _produceHash,
         uint256 _price,
         uint256 _orderSize,
         uint256 _limitOnPendingOrders

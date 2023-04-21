@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -31,19 +31,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "amount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "farmer",
 				"outputs": [
 					{
@@ -63,9 +50,9 @@
 						"type": "address"
 					},
 					{
-						"internalType": "uint256",
-						"name": "_name",
-						"type": "uint256"
+						"internalType": "bytes32",
+						"name": "_produceHash",
+						"type": "bytes32"
 					},
 					{
 						"internalType": "uint256",
@@ -75,11 +62,6 @@
 					{
 						"internalType": "uint256",
 						"name": "_orderSize",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_amount",
 						"type": "uint256"
 					},
 					{
@@ -114,19 +96,6 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -173,6 +142,19 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "produceHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
 					}
 				],
 				"stateMutability": "view",
@@ -244,7 +226,7 @@
 		"compilationTarget": {
 			"contracts/Produce.sol": "Produce"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -281,19 +263,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x2b7d71f5bc31b49ef09f4db2101f4a8c94fd5ec387851ed34145c8eaebe7d735",
+			"keccak256": "0x9c3320188f43c83492a9ee59a44e2f31a2d56c36dfb77be0663461f8e08651c1",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://916a8eef83f80579a6958ba9ee60a84c09f5a57a4e5b936bd809a58171c8c4eb",
-				"dweb:/ipfs/QmaaysvLEYcfZMVsrDr2Fmw7pmtiLP3mZS9N2cNPfb6NS4"
+				"bzz-raw://1804b4e9ab470031cde67d72fcec496986aa04d9623ff51610ad754af08af7e3",
+				"dweb:/ipfs/QmRvmgQhUdr9qVLfViG5mf62KBixvY9LJYWPM9JBwB93Gz"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0x539327f28df285de0c403b400f5f876ee14180ca404c5ef2cdcfee50658ce1c9",
+			"keccak256": "0xcffa0a57fbb26a9e8e80443170d7247287dd54778cee818adf2b59269a551250",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://9979d7128bee207ef027e605cc8e61c5bafa99964514c138ed2ffe799612daad",
-				"dweb:/ipfs/QmUwVyLoCy9AUNNMwL72GjHmgmsGfCzPgQqc3mcrUhVLAb"
+				"bzz-raw://4b8f939f15f8c7e699eb98d490f0be86af689b01ded0a5e41580c95c3ecf66a4",
+				"dweb:/ipfs/QmPi3z57LuuL6MqxR13SmXbEoDnQXuuZhmtZ9p4ye4vfoV"
 			]
 		}
 	},
