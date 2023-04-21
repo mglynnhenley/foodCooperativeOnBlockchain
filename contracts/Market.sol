@@ -13,6 +13,7 @@ contract Market {
     // This mapping stores avaliable produce
     mapping(address=> bool) produceList;
     // This mapping stores farmers who have produce on the Market
+    // This is what would be changed to add an implemented reputation part thing 
     mapping(address=> bool) public farmerList;
 
     constructor() {

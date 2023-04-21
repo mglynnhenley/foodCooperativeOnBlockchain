@@ -16,7 +16,8 @@ contract Produce is Ownable{
 
     enum State {
         UNINITIALIZED,
-        PRODUCESET
+        OPEN,
+        CLOSED
     }
     State private state;
 
@@ -40,7 +41,7 @@ contract Produce is Ownable{
         price = _price;
         orderSize = _orderSize;
         amount = _amount;
-        state = State.PRODUCESET;
+        state = State.OPEN;
     }
 
     /// Place an order an order of the produce

@@ -35,6 +35,7 @@ contract GroupOrder {
         require(state == State.OPEN);
         require(portionsAgreed == produce.orderSize());
         state = State.PENDING;
+        // does this send the eth?
         produce.placeOrder();
     }
 
@@ -69,7 +70,6 @@ contract GroupOrder {
     }
 
     // Function for farmer to notify the order is sent
-    // In the version without voting this will be enough to transfer the funds to the farmer
     function notifyOrderSent() external {
         require(state == State.PENDING);
         require(
