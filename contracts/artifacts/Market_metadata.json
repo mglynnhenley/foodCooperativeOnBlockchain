@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.18+commit.87f61d96"
 	},
 	"language": "Solidity",
 	"output": {
@@ -14,7 +14,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_name",
+						"name": "_produceHash",
 						"type": "uint256"
 					},
 					{
@@ -25,11 +25,6 @@
 					{
 						"internalType": "uint256",
 						"name": "_orderSize",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_amount",
 						"type": "uint256"
 					},
 					{
@@ -97,7 +92,7 @@
 		"compilationTarget": {
 			"contracts/Market.sol": "Market"
 		},
-		"evmVersion": "london",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -134,19 +129,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x2b7d71f5bc31b49ef09f4db2101f4a8c94fd5ec387851ed34145c8eaebe7d735",
+			"keccak256": "0xc806ca8d514e28d16cfaa778f8034c772ca82dcbc567bdf7629a6c25b9b508b2",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://916a8eef83f80579a6958ba9ee60a84c09f5a57a4e5b936bd809a58171c8c4eb",
-				"dweb:/ipfs/QmaaysvLEYcfZMVsrDr2Fmw7pmtiLP3mZS9N2cNPfb6NS4"
+				"bzz-raw://13dfecc638f81810145702ebae75ee7d1f2d4f839055353b7cf63f11aa46ac9f",
+				"dweb:/ipfs/Qmct7KPkkWPCtWc6MrZz6XcCwcRw6G2sz8xH4u58vUtQoB"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0x65baef23aee1367d790f0813939315913e5b9b8fc022c903c8fa6b0f4f205385",
+			"keccak256": "0xcfe31c3330849404d944c65d054fefda7765dbce9dcab75c6531ff6c8b5e66df",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://f2e0959b5d689b1cd7f5705c4772334b7a6de6e7db6dde4e8775e31a51458b4e",
-				"dweb:/ipfs/QmXmX89MBzYKf9pNXSsrxnpMgKmEyGg4XE9S6GTbJxek5r"
+				"bzz-raw://013be3438d523abd0aaeca74dba96a1c2a137fdbf5e917150e08eb5ae4e95ad9",
+				"dweb:/ipfs/QmZXix2tUF54wnamAgvAXyLB1SPzJFeytHJrQuvTMhRoXW"
 			]
 		}
 	},

@@ -21,19 +21,17 @@ contract Market {
     }
  
     function addProduce( 
-        uint256 _name,
+        uint256 _produceHash,
         uint256 _price,
         uint256 _orderSize,
-        uint256 _amount,
         uint256 _limitOnPendingOrders
         ) external returns (address produceContract) {
             address newProduceClone = Clones.clone(produceImplementation);
             Produce(newProduceClone).initilize(
                  msg.sender,
-                 _name,
+                 _produceHash,
                  _price,
                  _orderSize,
-                 _amount,
                  _limitOnPendingOrders
             );
             produceAddresses.push(address(newProduceClone));

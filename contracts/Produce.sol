@@ -9,10 +9,9 @@ contract Produce is Ownable{
     address[] private orders;
     uint256 public limitOnPendingOrders;
 
-    uint256 public name;
+    uint256 public produceHash;
     uint256 public price;
     uint256 public orderSize;
-    uint256 public amount;
 
     enum State {
         UNINITIALIZED,
@@ -27,20 +26,18 @@ contract Produce is Ownable{
 
     function initilize(
         address _farmer,
-        uint256 _name,
+        uint256 _produceHash,
         uint256 _price,
         uint256 _orderSize,
-        uint256 _amount,
         uint256 _limitOnPendingOrders
     ) external {
         require(state==State.UNINITIALIZED, "This produce has already been initilized");
         _transferOwnership(_farmer);
         market = msg.sender;
         limitOnPendingOrders = _limitOnPendingOrders;
-        name = _name;
+        produceHash = _produceHash;
         price = _price;
         orderSize = _orderSize;
-        amount = _amount;
         state = State.OPEN;
     }
 

@@ -8,6 +8,7 @@ contract GroupOrder {
     uint256 public portionsAgreed;
     uint256 public startTime;
     uint256 public endTime;
+    uint256 public constant minimumTimeLimit = 25 * ( 3 * 10 ** 6) ; // 25 hours or 1500 minutes in milliseconds
 
     enum State {
         OPEN,
@@ -21,9 +22,7 @@ contract GroupOrder {
     address[] public orderList;
 
     constructor(address produce_, uint256 timeLimit_) {
-        // We probably don't want our orders to be open for any time
-        // In particular lets put a lower limit of 25 minutes 
-        require(timeLimit_ > 1500);
+        require(timeLimit_ > minimumTimeLimit ); 
         produce = Produce(produce_);
         startTime = block.timestamp;
         endTime = startTime + timeLimit_;
@@ -35,7 +34,6 @@ contract GroupOrder {
         require(state == State.OPEN);
         require(portionsAgreed == produce.orderSize());
         state = State.PENDING;
-        // does this send the eth?
         produce.placeOrder();
     }
 
