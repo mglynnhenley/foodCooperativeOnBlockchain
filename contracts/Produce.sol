@@ -4,14 +4,15 @@ import "./Market.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Produce is Ownable{
+    event OrderQueued(address groupOrder);
+
     address public farmer;
     address public market;
-    address[] private orders;
-    uint256 public limitOnPendingOrders;
-
     bytes32 public produceHash;
     uint256 public price;
     uint256 public orderSize;
+
+    mapping(address=> bool) produceList;
 
     enum State {
         UNINITIALIZED,
@@ -28,13 +29,11 @@ contract Produce is Ownable{
         address _farmer,
         bytes32 _produceHash,
         uint256 _price,
-        uint256 _orderSize,
-        uint256 _limitOnPendingOrders
+        uint256 _orderSize
     ) external {
         require(state==State.UNINITIALIZED, "This produce has already been initilized");
         _transferOwnership(_farmer);
         market = msg.sender;
-        limitOnPendingOrders = _limitOnPendingOrders;
         produceHash = _produceHash;
         price = _price;
         orderSize = _orderSize;
@@ -42,25 +41,20 @@ contract Produce is Ownable{
     }
 
     /// Place an order an order of the produce
-    function placeOrder() external payable {
+    function placeOrder() external {
         require(
             msg.sender != owner(),
             "farmer cannot place order for their own produce"
         );
-        require(
-            msg.value == orderSize * price,
-            "order must be of correct size and price"
-        );
-        require(orders.length < limitOnPendingOrders, "too many orders pending for this produce");
-        orders.push(msg.sender);
+        require(!produceList[msg.sender],  "order has already been placed");
+        produceList[msg.sender] = true;
+        emit OrderQueued(msg.sender);
     }
 
-    /// This allows farmers to take a single produceOrder
-    function takeOrder() external onlyOwner returns (address order) {
-        require(orders.length > 0, "No orders to take");
-        address orderToTake = orders[orders.length - 1];
-        orders.pop();
-        return orderToTake;
-    } 
+    function removeOrder() external {
+        require(produceList[msg.sender], "no order has been placed");
+        produceList[msg.sender] = false;
+    }
+
 
 }

@@ -14,6 +14,19 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "groupOrder",
+						"type": "address"
+					}
+				],
+				"name": "OrderQueued",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "previousOwner",
@@ -63,29 +76,11 @@
 						"internalType": "uint256",
 						"name": "_orderSize",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_limitOnPendingOrders",
-						"type": "uint256"
 					}
 				],
 				"name": "initilize",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "limitOnPendingOrders",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -131,7 +126,7 @@
 				"inputs": [],
 				"name": "placeOrder",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -162,21 +157,15 @@
 			},
 			{
 				"inputs": [],
-				"name": "renounceOwnership",
+				"name": "removeOrder",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "takeOrder",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "order",
-						"type": "address"
-					}
-				],
+				"name": "renounceOwnership",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -214,9 +203,6 @@
 			"methods": {
 				"placeOrder()": {
 					"notice": "Place an order an order of the produce"
-				},
-				"takeOrder()": {
-					"notice": "This allows farmers to take a single produceOrder"
 				}
 			},
 			"version": 1
@@ -263,19 +249,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x9c3320188f43c83492a9ee59a44e2f31a2d56c36dfb77be0663461f8e08651c1",
+			"keccak256": "0xe6c239a2e8421f9fb51a16271c0e57e14336ac42a11b35ffc1dadcdbc67b6be5",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://1804b4e9ab470031cde67d72fcec496986aa04d9623ff51610ad754af08af7e3",
-				"dweb:/ipfs/QmRvmgQhUdr9qVLfViG5mf62KBixvY9LJYWPM9JBwB93Gz"
+				"bzz-raw://5d31cc6b486d6047839dac6902fc2f8cea95863afba0b27849c27d37321615ee",
+				"dweb:/ipfs/QmVTgHHBYtJCQKjqsfWBvj1KQZNF9QoFJwtSjLGoNFWngp"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0xcffa0a57fbb26a9e8e80443170d7247287dd54778cee818adf2b59269a551250",
+			"keccak256": "0x02a2cd4f7281734d1878aa0d0c0ce55f50118a80c35b4c71e59e1e57ff687048",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://4b8f939f15f8c7e699eb98d490f0be86af689b01ded0a5e41580c95c3ecf66a4",
-				"dweb:/ipfs/QmPi3z57LuuL6MqxR13SmXbEoDnQXuuZhmtZ9p4ye4vfoV"
+				"bzz-raw://77779800b70f8f3932394a8c91e4cea6ad5411a600b2ef06bca5f7a0edddd0de",
+				"dweb:/ipfs/QmSfBEA8Xk8RAvDUXahTPi9MiUeVvkotxGm991KFGgduSf"
 			]
 		}
 	},

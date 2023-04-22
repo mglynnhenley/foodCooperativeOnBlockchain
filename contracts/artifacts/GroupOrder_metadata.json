@@ -16,10 +16,48 @@
 						"internalType": "uint256",
 						"name": "timeLimit_",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "requiredVotesToReject_",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "reason",
+						"type": "string"
+					}
+				],
+				"name": "OrderFailed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "enum GroupOrder.State",
+						"name": "state",
+						"type": "uint8"
+					}
+				],
+				"name": "OrderStateUpdate",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "acceptOrder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
 				"inputs": [],
@@ -29,6 +67,19 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "groupOrderHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
 					}
 				],
 				"stateMutability": "view",
@@ -49,44 +100,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "notifyOrderSent",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "orderList",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "numberOfPortions",
-						"type": "uint256"
-					}
-				],
 				"name": "placeOrder",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "portions",
-						"type": "uint256"
+						"internalType": "bool",
+						"name": "orderplaced",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "payable",
@@ -95,6 +114,19 @@
 			{
 				"inputs": [],
 				"name": "portionsAgreed",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "portionsPerPerson",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -127,6 +159,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "requiredVotesToReject",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "startTime",
 				"outputs": [
 					{
@@ -153,16 +198,29 @@
 			},
 			{
 				"inputs": [],
-				"name": "submitOrder",
+				"name": "timeOutGroupOrder",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "timeOutGroupOrder",
+				"name": "voteToReject",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "votesToReject",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -175,24 +233,14 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"placeOrder(uint256)": {
-					"details": "returns boolean flag variable representing whether the order has been sent",
-					"params": {
-						"numberOfPortions": "number of portions required for order"
-					}
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"placeOrder(uint256)": {
-					"notice": "Function for User to pledge individual order to the group order"
-				},
-				"submitOrder()": {
-					"notice": "anyone can submit the order if the portions agreed has reached the max size"
+				"placeOrder()": {
+					"notice": "One person gets one order to ensure equal economic participation"
 				}
 			},
 			"version": 1
@@ -239,27 +287,27 @@
 			]
 		},
 		"contracts/GroupOrder.sol": {
-			"keccak256": "0xb331041444d507caefb28e649840757a91efc9cafb78e79243369b2afd520c2b",
+			"keccak256": "0xb3bbd509c912ce64317afb0873ef9ba64a12bd425c3d02aad6b2bd992982e53a",
 			"license": "UNLICENSD",
 			"urls": [
-				"bzz-raw://24741f0f6424b344aba8f2ab3df9b17968339cf7fb317b16eda44dbe0e7da940",
-				"dweb:/ipfs/QmPcd4M5zi9TwfK6R4tw9zQKkFLZKMKxCNZMRediLNVu9o"
+				"bzz-raw://8ffba370c6616feaded79e236b7efe447c673acc96fe46a306ceee5dbf679895",
+				"dweb:/ipfs/QmNV9dkDLLJ4Mq8iPv2NJ8iN4bgDYFX8CT3pjM3sVsUPXj"
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x698484b190bee14b5ba492fc8815b4118938b88b1cc139a227ab665b1c2f60c5",
+			"keccak256": "0xe6c239a2e8421f9fb51a16271c0e57e14336ac42a11b35ffc1dadcdbc67b6be5",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://44ef8fd1c54d6c815838bbfd0721d8dbd84cc39577168ad2539982e872ca7de9",
-				"dweb:/ipfs/QmNzuwms4hWSSNB2aEu9vVNd4tcM1GXnM7KaD8riyndpzq"
+				"bzz-raw://5d31cc6b486d6047839dac6902fc2f8cea95863afba0b27849c27d37321615ee",
+				"dweb:/ipfs/QmVTgHHBYtJCQKjqsfWBvj1KQZNF9QoFJwtSjLGoNFWngp"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0x539327f28df285de0c403b400f5f876ee14180ca404c5ef2cdcfee50658ce1c9",
+			"keccak256": "0x02a2cd4f7281734d1878aa0d0c0ce55f50118a80c35b4c71e59e1e57ff687048",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://9979d7128bee207ef027e605cc8e61c5bafa99964514c138ed2ffe799612daad",
-				"dweb:/ipfs/QmUwVyLoCy9AUNNMwL72GjHmgmsGfCzPgQqc3mcrUhVLAb"
+				"bzz-raw://77779800b70f8f3932394a8c91e4cea6ad5411a600b2ef06bca5f7a0edddd0de",
+				"dweb:/ipfs/QmSfBEA8Xk8RAvDUXahTPi9MiUeVvkotxGm991KFGgduSf"
 			]
 		}
 	},
