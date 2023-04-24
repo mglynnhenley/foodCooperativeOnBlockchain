@@ -11,11 +11,43 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"indexed": false,
+						"internalType": "address",
+						"name": "produce",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "farmer",
+						"type": "address"
+					}
+				],
+				"name": "ProduceAddedToMarket",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "produce",
+						"type": "address"
+					}
+				],
+				"name": "ProduceDeletedFromMarket",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
 						"name": "_produceHash",
-						"type": "uint256"
+						"type": "bytes32"
 					},
 					{
 						"internalType": "uint256",
@@ -26,41 +58,11 @@
 						"internalType": "uint256",
 						"name": "_orderSize",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_limitOnPendingOrders",
-						"type": "uint256"
 					}
 				],
 				"name": "addProduce",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "produceContract",
-						"type": "address"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "farmerList",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -129,19 +131,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0xc806ca8d514e28d16cfaa778f8034c772ca82dcbc567bdf7629a6c25b9b508b2",
+			"keccak256": "0x62e5895709507be5255aa1df7bff2826d54183250acb1f8cb2c2e2f40e3afa36",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://13dfecc638f81810145702ebae75ee7d1f2d4f839055353b7cf63f11aa46ac9f",
-				"dweb:/ipfs/Qmct7KPkkWPCtWc6MrZz6XcCwcRw6G2sz8xH4u58vUtQoB"
+				"bzz-raw://e12273938a9bc98395f26a369f282dac1ac51669268ddd42eebdca51ca057c8e",
+				"dweb:/ipfs/QmPbqHqHnp69tXenwYccRiBmHXgFPWuKDRhgiBacfT182P"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0xcfe31c3330849404d944c65d054fefda7765dbce9dcab75c6531ff6c8b5e66df",
+			"keccak256": "0x02a2cd4f7281734d1878aa0d0c0ce55f50118a80c35b4c71e59e1e57ff687048",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://013be3438d523abd0aaeca74dba96a1c2a137fdbf5e917150e08eb5ae4e95ad9",
-				"dweb:/ipfs/QmZXix2tUF54wnamAgvAXyLB1SPzJFeytHJrQuvTMhRoXW"
+				"bzz-raw://77779800b70f8f3932394a8c91e4cea6ad5411a600b2ef06bca5f7a0edddd0de",
+				"dweb:/ipfs/QmSfBEA8Xk8RAvDUXahTPi9MiUeVvkotxGm991KFGgduSf"
 			]
 		}
 	},

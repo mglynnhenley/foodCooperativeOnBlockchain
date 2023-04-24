@@ -100,15 +100,16 @@ contract GroupOrder {
         require(state == State.PENDING);
         require(
             msg.sender == produce.farmer(),
-            "Only the farmer of the produce can notify that the order has been sent"
+            "Only the farmer of the produce can notify that the order has been accepted"
         );
         state = State.SENT;
+        produce.removeOrder();
         emit OrderStateUpdate(state);
         payable(produce.farmer()).transfer(portionsAgreed * produce.price());
     }
 
     //Function for gropu order members to 
-    function voteToReject() external {
+    function voteToCancel() external {
         require(state == State.PENDING, "members can only vote to reject pending orders");
         require(orders[msg.sender], "only members of this group order may vote to reject the order");
         votesToReject += 1;

@@ -14,7 +14,7 @@ contract Market {
     mapping(address=> bool) produceList;
     // This mapping stores farmers who have produce on the Market
     // This is what would be changed to add an implemented reputation part thing 
-    mapping(address=> bool) public farmerList;
+    mapping(address=> bool) farmerList;
 
     constructor() {
         produceImplementation = address(new Produce());
