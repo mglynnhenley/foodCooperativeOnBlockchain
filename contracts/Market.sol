@@ -37,11 +37,10 @@ contract Market {
             emit ProduceAddedToMarket(address(newProduceClone), msg.sender);
     }
 
-    function removeProduce(address produceAddress) public {
-        require(produceList[produceAddress], "This produce is not listed on the Market");
-        require(Produce(produceAddress).owner()== msg.sender, "Only produce owner can remove produce from Market");
-        produceList[produceAddress] = false;
-        emit ProduceDeletedFromMarket(produceAddress);
+    function removeProduce() public {
+        require(produceList[msg.sender], "This produce is not listed on the Market");
+        produceList[msg.sender] = false;
+        emit ProduceDeletedFromMarket(msg.sender);
     }
 
 

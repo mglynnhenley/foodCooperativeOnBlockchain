@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.7+commit.e28d00a7"
 	},
 	"language": "Solidity",
 	"output": {
@@ -41,6 +41,13 @@
 				],
 				"name": "OwnershipTransferred",
 				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "closeProduce",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
 				"inputs": [],
@@ -212,7 +219,7 @@
 		"compilationTarget": {
 			"contracts/Produce.sol": "Produce"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "london",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -249,19 +256,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0xe6c239a2e8421f9fb51a16271c0e57e14336ac42a11b35ffc1dadcdbc67b6be5",
+			"keccak256": "0x1ad97707698a4c304b905ebffc7802dcb360f063fe9f97fd4ec41ed5cf3d36ac",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://5d31cc6b486d6047839dac6902fc2f8cea95863afba0b27849c27d37321615ee",
-				"dweb:/ipfs/QmVTgHHBYtJCQKjqsfWBvj1KQZNF9QoFJwtSjLGoNFWngp"
+				"bzz-raw://ef407bd4b29346fd4e76087521be482e1426beaccad84dab8be04498257c87b4",
+				"dweb:/ipfs/QmfSy3Z9ZCD1wV2eEPW1p4BLrEKhYd3BY9nKfMuER4xkpS"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0x02a2cd4f7281734d1878aa0d0c0ce55f50118a80c35b4c71e59e1e57ff687048",
+			"keccak256": "0x60cc154232b1596cedd9220feca5be893ffdb1ca07928fae53444ccaea2afe4f",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://77779800b70f8f3932394a8c91e4cea6ad5411a600b2ef06bca5f7a0edddd0de",
-				"dweb:/ipfs/QmSfBEA8Xk8RAvDUXahTPi9MiUeVvkotxGm991KFGgduSf"
+				"bzz-raw://67c95038f9d1632799f6f53b5eea29327d7601e0096aa7dad5045aeea36cea40",
+				"dweb:/ipfs/QmQx88XJriZaKnryx7BgtzGhy2PH3w3UDDyWN37XXrbcr1"
 			]
 		}
 	},

@@ -42,6 +42,7 @@ contract Produce is Ownable{
 
     /// Place an order an order of the produce
     function placeOrder() external {
+        require(state == State.OPEN, "produce is not open for ordering");
         require(
             msg.sender != owner(),
             "farmer cannot place order for their own produce"
@@ -54,6 +55,12 @@ contract Produce is Ownable{
     function removeOrder() external {
         require(produceList[msg.sender], "no order has been placed");
         produceList[msg.sender] = false;
+    }
+
+    function closeProduce() external onlyOwner {
+        require(state == State.OPEN, "only open produce can be closed");
+        Market(market).removeProduce();
+        state = State.CLOSED;
     }
 
 
