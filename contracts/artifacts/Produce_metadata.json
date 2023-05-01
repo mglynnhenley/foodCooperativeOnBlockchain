@@ -163,6 +163,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "produceList",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "removeOrder",
 				"outputs": [],
@@ -264,11 +283,11 @@
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0x60cc154232b1596cedd9220feca5be893ffdb1ca07928fae53444ccaea2afe4f",
+			"keccak256": "0xfc115c0a6fd4b751497e563fa8686d588345257f7236ebc578c7197cf604fecb",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://67c95038f9d1632799f6f53b5eea29327d7601e0096aa7dad5045aeea36cea40",
-				"dweb:/ipfs/QmQx88XJriZaKnryx7BgtzGhy2PH3w3UDDyWN37XXrbcr1"
+				"bzz-raw://58cc954a87b2a43895f029ee56019eb50a49aa1cd62ebdb08d1675f8263bd105",
+				"dweb:/ipfs/QmNcusJQLWkh5KQL3maH4EBWTWP38KHeSQ1DG64iPXi81d"
 			]
 		}
 	},

@@ -66,13 +66,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "produceAddress",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"name": "removeProduce",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -131,19 +125,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x0154820715b2cea2d81d20417501156a9edb972b759c79c23a451a0d8e89d179",
+			"keccak256": "0x1ad97707698a4c304b905ebffc7802dcb360f063fe9f97fd4ec41ed5cf3d36ac",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://084876ce9c7efd78bcdd4fd8646350e28f5fab8531d5f241cf14027483a08fe5",
-				"dweb:/ipfs/QmTFgiJLkGKN9qabMGPUoEyR68jaWxQQvKNnz654hFLreB"
+				"bzz-raw://ef407bd4b29346fd4e76087521be482e1426beaccad84dab8be04498257c87b4",
+				"dweb:/ipfs/QmfSy3Z9ZCD1wV2eEPW1p4BLrEKhYd3BY9nKfMuER4xkpS"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0x77106461da4ee1fcf0128de0d0f1acc9037d099cadd8f4fdfe60fa205b74d58d",
+			"keccak256": "0x0c6576e255ff004a5ccac079c1ead212b39fbd8b899d51dfefff19798efdbf44",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://04badfb6e9937f3dae6f128414313afd94795e3a0c09aae6c44ae70ec182d1d3",
-				"dweb:/ipfs/QmWzTopzEvhHfNTih7Y6pLTrm8AQ9Qqc9CLiD1bvsgAobL"
+				"bzz-raw://6134b1df5ac7e8b7b995e966c891e799ca8b10078be75eda07e260497b726a0c",
+				"dweb:/ipfs/QmXyrsygJJY1ZU1Stod2bBwKAFHgJAsHHBBhDDyKq4NeXz"
 			]
 		}
 	},

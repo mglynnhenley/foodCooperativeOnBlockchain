@@ -9,7 +9,6 @@ contract GroupOrder {
 
     Produce public produce;
     uint256 public portionsAgreed;
-    uint256 public portionsPerPerson;
     uint256 public startTime;
     uint256 public endTime;
     uint256 public constant minimumTimeLimit = 25 * (3 * 10**6); // 25 hours or 1500 minutes in milliseconds
@@ -31,6 +30,7 @@ contract GroupOrder {
 
     constructor(address produce_, uint256 timeLimit_, uint256 requiredVotesToReject_) {
         require(timeLimit_ > minimumTimeLimit, "time limit not high enough");
+        state = State.OPEN;
         produce = Produce(produce_);
         requiredVotesToReject = requiredVotesToReject_;
         startTime = block.timestamp;
@@ -58,37 +58,36 @@ contract GroupOrder {
     function placeOrder()
         external
         payable
-        returns (bool orderplaced)
     {
-        require(state == State.OPEN);
-        require(produce.orderSize() - 1 <= portionsAgreed);
-        require(produce.price() == msg.value);
+        require(state == State.OPEN, "state is not open");
+        require(produce.orderSize() - 1 >= portionsAgreed, "wrong number portions agreed");
+        require(produce.price() <= msg.value, "not enough wei sent");
         if (block.timestamp > endTime) {
             state = State.REJECTED;
             emit OrderStateUpdate(state);
         } else {
             orders[msg.sender] = true;
             portionsAgreed += 1;
-            // The order will be placed as soon as the required order size is met
-            if (portionsAgreed == produce.orderSize()) {
-                try produce.placeOrder() {
-                    state = State.PENDING;
-                    emit OrderStateUpdate(state);
-                } catch Error(string memory reason) {
-                    emit OrderFailed(reason);
-                }
-            }
-            return orders[msg.sender];
         }
+    }
+
+    function submitOrder() external {
+       require(portionsAgreed == produce.orderSize(), "not enough portion orders have been placed");
+        try produce.placeOrder() {
+            state = State.PENDING;
+            emit OrderStateUpdate(state);
+        } catch Error(string memory reason) {
+            emit OrderFailed(reason);
+         }
     }
 
     // State: PENDING Functions
 
     //Function for Farmer to reject Order
     function rejectOrder() external {
-        require(state == State.PENDING);
+        require(state == State.PENDING, "state is not pending");
         require(
-            msg.sender == produce.farmer(),
+            msg.sender == produce.owner(),
             "Only the farmer of the produce can reject the order"
         );
         state = State.REJECTED;
@@ -99,13 +98,13 @@ contract GroupOrder {
     function acceptOrder() external {
         require(state == State.PENDING);
         require(
-            msg.sender == produce.farmer(),
+            msg.sender == produce.owner(),
             "Only the farmer of the produce can notify that the order has been accepted"
         );
         state = State.SENT;
         produce.removeOrder();
         emit OrderStateUpdate(state);
-        payable(produce.farmer()).transfer(portionsAgreed * produce.price());
+        payable(produce.owner()).transfer(portionsAgreed * produce.price());
     }
 
     //Function for gropu order members to 

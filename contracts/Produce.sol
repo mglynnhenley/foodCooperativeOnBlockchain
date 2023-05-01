@@ -12,7 +12,7 @@ contract Produce is Ownable{
     uint256 public price;
     uint256 public orderSize;
 
-    mapping(address=> bool) produceList;
+    mapping(address=> bool) public orderList;
 
     enum State {
         UNINITIALIZED,
@@ -47,20 +47,20 @@ contract Produce is Ownable{
             msg.sender != owner(),
             "farmer cannot place order for their own produce"
         );
-        require(!produceList[msg.sender],  "order has already been placed");
-        produceList[msg.sender] = true;
+        require(!orderList[msg.sender],  "order has already been placed");
+        orderList[msg.sender] = true;
         emit OrderQueued(msg.sender);
     }
 
     function removeOrder() external {
-        require(produceList[msg.sender], "no order has been placed");
-        produceList[msg.sender] = false;
+        require(orderList[msg.sender], "no order has been placed");
+        orderList[msg.sender] = false;
     }
 
     function closeProduce() external onlyOwner {
-        require(state == State.OPEN, "only open produce can be closed");
-        Market(market).removeProduce();
+        require(state == State.OPEN, "produce is already closed");
         state = State.CLOSED;
+        Market(market).removeProduce();
     }
 
 
