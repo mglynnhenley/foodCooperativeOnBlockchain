@@ -4,20 +4,20 @@ import "./Market.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Produce is Ownable{
+    event OrderQueued(address groupOrder);
+
     address public farmer;
     address public market;
-    address[] private orders;
-    uint256 public limitOnPendingOrders;
-
-    uint256 public name;
+    bytes32 public produceHash;
     uint256 public price;
     uint256 public orderSize;
-    bytes32 public amount;
-    address public deliverer;
+
+    mapping(address=> bool) public orderList;
 
     enum State {
         UNINITIALIZED,
-        PRODUCESET
+        OPEN,
+        CLOSED
     }
     State private state;
 
@@ -27,45 +27,41 @@ contract Produce is Ownable{
 
     function initilize(
         address _farmer,
-        uint256 _name,
+        bytes32 _produceHash,
         uint256 _price,
-        uint256 _orderSize,
-        bytes32 _amount,
-        uint256 _limitOnPendingOrders,
-        address _delivererOfProduce
+        uint256 _orderSize
     ) external {
         require(state==State.UNINITIALIZED, "This produce has already been initilized");
         _transferOwnership(_farmer);
         market = msg.sender;
-        limitOnPendingOrders = _limitOnPendingOrders;
-        name = _name;
+        produceHash = _produceHash;
         price = _price;
         orderSize = _orderSize;
-        amount = _amount;
-        deliverer = _delivererOfProduce;
-        state = State.PRODUCESET;
+        state = State.OPEN;
     }
 
     /// Place an order an order of the produce
-    function placeOrder() external payable {
+    function placeOrder() external {
+        require(state == State.OPEN, "produce is not open for ordering");
         require(
             msg.sender != owner(),
             "farmer cannot place order for their own produce"
         );
-        require(
-            msg.value == orderSize * price,
-            "order must be of correct size and price"
-        );
-        require(orders.length < limitOnPendingOrders);
-        orders.push(msg.sender);
+        require(!orderList[msg.sender],  "order has already been placed");
+        orderList[msg.sender] = true;
+        emit OrderQueued(msg.sender);
     }
 
-    /// This allows farmers to take a single produceOrder
-    function takeOrder() external onlyOwner returns (address order) {
-        require(orders.length > 0, "No orders to take");
-        address orderToTake = orders[orders.length - 1];
-        orders.pop();
-        return orderToTake;
-    } 
+    function removeOrder() external {
+        require(orderList[msg.sender], "no order has been placed");
+        orderList[msg.sender] = false;
+    }
+
+    function closeProduce() external onlyOwner {
+        require(state == State.OPEN, "produce is already closed");
+        state = State.CLOSED;
+        Market(market).removeProduce();
+    }
+
 
 }

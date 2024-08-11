@@ -4,15 +4,16 @@ import "./Produce.sol";
 import "@openzeppelin/contracts/proxy/Clones.sol";
 
 contract Market {
+    event ProduceAddedToMarket(address produce, address farmer);
+    event ProduceDeletedFromMarket(address produce);
+
     //This is the immutable definition of produce in this market
     address immutable produceImplementation;
 
-    //This is an array of all current and past produce listed on the market 
-    address[] produceAddresses;
-
     // This mapping stores avaliable produce
-    mapping(address=> bool) produceList;
-    // This mapping stores farmers who ahve produce on the Market
+    mapping(address=> bool) public produceList;
+    // This mapping stores farmers who have produce on the Market
+    // This is what would be changed to add an implemented reputation part thing 
     mapping(address=> bool) public farmerList;
 
     constructor() {
@@ -20,33 +21,26 @@ contract Market {
     }
  
     function addProduce( 
-        uint256 _name,
+        bytes32 _produceHash,
         uint256 _price,
-        uint256 _orderSize,
-        bytes32 _amount,
-        uint256 _limitOnPendingOrders,
-        address _delivererOfProduce,
-        ) external returns (address produceContract) {
+        uint256 _orderSize
+        ) external {
             address newProduceClone = Clones.clone(produceImplementation);
             Produce(newProduceClone).initilize(
                  msg.sender,
-                 _name,
+                 _produceHash,
                  _price,
-                 _orderSize,
-                 _amount,
-                 _limitOnPendingOrders,
-                 _delivererOfProduce
+                 _orderSize
             );
-            produceAddresses.push(address(newProduceClone));
             produceList[address(newProduceClone)] = true;
             farmerList[msg.sender] = true;
-            return produceContract;
+            emit ProduceAddedToMarket(address(newProduceClone), msg.sender);
     }
 
-    function removeProduce(address produceAddress) public {
-        require(produceList[produceAddress], "This produce is not listed on the Market");
-        require(Produce(produceAddress).owner()== msg.sender, "Only produce owner can remove produce from Market");
-        produceList[produceAddress] = false;
+    function removeProduce() public {
+        require(produceList[msg.sender], "This produce is not listed on the Market");
+        produceList[msg.sender] = false;
+        emit ProduceDeletedFromMarket(msg.sender);
     }
 
 

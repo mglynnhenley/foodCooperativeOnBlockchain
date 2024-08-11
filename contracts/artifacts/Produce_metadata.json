@@ -14,6 +14,19 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "groupOrder",
+						"type": "address"
+					}
+				],
+				"name": "OrderQueued",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "previousOwner",
@@ -31,15 +44,9 @@
 			},
 			{
 				"inputs": [],
-				"name": "amount",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
-					}
-				],
-				"stateMutability": "view",
+				"name": "closeProduce",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -63,9 +70,9 @@
 						"type": "address"
 					},
 					{
-						"internalType": "uint256",
-						"name": "_name",
-						"type": "uint256"
+						"internalType": "bytes32",
+						"name": "_produceHash",
+						"type": "bytes32"
 					},
 					{
 						"internalType": "uint256",
@@ -76,34 +83,11 @@
 						"internalType": "uint256",
 						"name": "_orderSize",
 						"type": "uint256"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "_amount",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_limitOnPendingOrders",
-						"type": "uint256"
 					}
 				],
 				"name": "initilize",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "limitOnPendingOrders",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -114,19 +98,6 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -162,7 +133,7 @@
 				"inputs": [],
 				"name": "placeOrder",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -180,21 +151,47 @@
 			},
 			{
 				"inputs": [],
-				"name": "renounceOwnership",
+				"name": "produceHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "produceList",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "removeOrder",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "takeOrder",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "order",
-						"type": "address"
-					}
-				],
+				"name": "renounceOwnership",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -232,9 +229,6 @@
 			"methods": {
 				"placeOrder()": {
 					"notice": "Place an order an order of the produce"
-				},
-				"takeOrder()": {
-					"notice": "This allows farmers to take a single produceOrder"
 				}
 			},
 			"version": 1
@@ -281,19 +275,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x5bc0df34731d38674d242450beba5741042ad44b220891a472a27cda584cf5b6",
+			"keccak256": "0x1ad97707698a4c304b905ebffc7802dcb360f063fe9f97fd4ec41ed5cf3d36ac",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://56a9948afeab4dd8736bf31fcf6a809c07e266c98fc5a87d38e9a408fa643b2e",
-				"dweb:/ipfs/QmeumVxD47qM7MMqbuScMXBzSH5xwnhWgKJx1Av44nbRJt"
+				"bzz-raw://ef407bd4b29346fd4e76087521be482e1426beaccad84dab8be04498257c87b4",
+				"dweb:/ipfs/QmfSy3Z9ZCD1wV2eEPW1p4BLrEKhYd3BY9nKfMuER4xkpS"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0xa1d48356d5af8b90d19bd3f64ebdd869e593bc4fcc8a78b31518a6458aca2981",
+			"keccak256": "0xfc115c0a6fd4b751497e563fa8686d588345257f7236ebc578c7197cf604fecb",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://f8193ec33d24ca19b292bccf5330d733a4e63778b05aef7907c9668d86fb41c3",
-				"dweb:/ipfs/QmbNxET2gYkmwmNFPZe8dacTGURC4kmBaq5rU4eJRcdXF9"
+				"bzz-raw://58cc954a87b2a43895f029ee56019eb50a49aa1cd62ebdb08d1675f8263bd105",
+				"dweb:/ipfs/QmNcusJQLWkh5KQL3maH4EBWTWP38KHeSQ1DG64iPXi81d"
 			]
 		}
 	},

@@ -1,0 +1,175 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_name",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_orderSize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_amount",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_limitOnPendingOrders",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_delivererOfProduce",
+						"type": "address"
+					}
+				],
+				"name": "addProduce",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "produceContract",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "farmerList",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "produceAddress",
+						"type": "address"
+					}
+				],
+				"name": "removeProduce",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/MarketWithNoLeader.sol": "MarketWithNoLeader"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2",
+				"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y"
+			]
+		},
+		"@openzeppelin/contracts/proxy/Clones.sol": {
+			"keccak256": "0x888d64d221d52c31d015b76e50ca1af5ef8ff076550810b49cea6b01d8267a10",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4da0f451fe5aefdb95204dbec4a9448a8a2b00a444864bb5dbf7162da842a0f7",
+				"dweb:/ipfs/QmYciAwNiJzgGMAqSTUANwMjy5HykNUvmkQ5PQhNTRqrB5"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
+				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
+			]
+		},
+		"contracts/Market.sol": {
+			"keccak256": "0x01b9d55598089aab145943621dce6ff8e0021d8f4e267e0c77901587ad86e107",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://330f7397cc0512c0de035efca8c236c2cba89d46a0da0312ca16555f6d8e496c",
+				"dweb:/ipfs/QmWG4U6rJyob3JzknkJNdgp1uaDcP5fQwvXQdx7EmwqPcM"
+			]
+		},
+		"contracts/MarketWithNoLeader.sol": {
+			"keccak256": "0x541d2743ebbb8740195b44df88a65ea2e9f2d7ee0e0959a3c31321246e8045a0",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://b0ec42a7699ebc8466513d43cd2cf8daec9cd6771dd55af47981df970d83540b",
+				"dweb:/ipfs/Qmf7rUjrnZA3GhDfKz1oz9dyVsUaViouQpkXD56oJ5n4pj"
+			]
+		},
+		"contracts/Produce.sol": {
+			"keccak256": "0x7112b686fb1026a05641595015cd0d5129f07d229a1a1511814903a2adefe1d3",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://5f946d3545dbe9e66d787a52f03b0be25ee655ca6dde18d5d2a50431729c335c",
+				"dweb:/ipfs/Qmdu3QMqsTNN5Lt9yNyTrV2h4xdX8ZZMSoZtovqhe5Mhf5"
+			]
+		},
+		"contracts/ProduceWithNoLeader.sol": {
+			"keccak256": "0x63db6e3f4b14e59cea67d7e7932aa64e16e10c91540de927a441fe60c73ee475",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://4aa9c60b78f60539cfbe95e1e3cda4facc59af42b8823bbb71ed639cdcc4d4a7",
+				"dweb:/ipfs/Qmb6LufHZjcUE4gVAkjTFt9pe9NjK4KRehczNMgde5DiWf"
+			]
+		}
+	},
+	"version": 1
+}

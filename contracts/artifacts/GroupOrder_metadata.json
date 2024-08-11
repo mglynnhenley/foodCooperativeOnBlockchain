@@ -11,6 +11,16 @@
 						"internalType": "address",
 						"name": "produce_",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timeLimit_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "requiredVotesToReject_",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -20,50 +30,78 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "previousOwner",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
+						"indexed": false,
+						"internalType": "string",
+						"name": "reason",
+						"type": "string"
 					}
 				],
-				"name": "OwnershipTransferred",
+				"name": "OrderFailed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "enum GroupOrder.State",
+						"name": "state",
+						"type": "uint8"
+					}
+				],
+				"name": "OrderStateUpdate",
 				"type": "event"
 			},
 			{
 				"inputs": [],
-				"name": "owner",
+				"name": "acceptOrder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "endTime",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "uint256",
 						"name": "",
-						"type": "address"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "groupOrderHash",
+				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "numberOfPortions",
-						"type": "uint256"
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
 					}
 				],
-				"name": "placeOrder",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "minimumTimeLimit",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "portions",
+						"name": "",
 						"type": "uint256"
 					}
 				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "placeOrder",
+				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
 			},
@@ -102,9 +140,41 @@
 			},
 			{
 				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "requiredVotesToReject",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "startTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "state",
+				"outputs": [
+					{
+						"internalType": "enum GroupOrder.State",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -115,16 +185,30 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "transferOwnership",
+				"inputs": [],
+				"name": "timeOutGroupOrder",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "voteToCancel",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "votesToReject",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -137,36 +221,14 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"owner()": {
-					"details": "Returns the address of the current owner."
-				},
-				"placeOrder(uint256)": {
-					"details": "returns boolean flag variable representing whether the order has been sent",
-					"params": {
-						"numberOfPortions": "number of portions required for order"
-					}
-				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
-				},
-				"submitOrder()": {
-					"details": "can only be called by the owner of the GroupOrder, this function also changes the state to closed"
-				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
-				}
-			},
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"placeOrder(uint256)": {
-					"notice": "Function for User to pledge individual order to the group order"
-				},
-				"submitOrder()": {
-					"notice": "Owner of the food proposal contract can submit order to Market if minimum order requirement is met"
+				"placeOrder()": {
+					"notice": "One person gets one order to ensure equal economic participation"
 				}
 			},
 			"version": 1
@@ -213,27 +275,27 @@
 			]
 		},
 		"contracts/GroupOrder.sol": {
-			"keccak256": "0xf7a089767bae7de5a0a4eb5ead2e460e088450ff023c85d09c8aed37e6c53d3e",
+			"keccak256": "0x4bf8b5d1c5d6c242934b16b9548ebdeea178813366134bb64df5411834d448ca",
 			"license": "UNLICENSD",
 			"urls": [
-				"bzz-raw://22c2fa0c3f6323f244c33eebef477f046455d4715c8858112edf59ace4d69fc8",
-				"dweb:/ipfs/QmQGctM3fjmVdeSqggkaWFKRHN3NoTHQop2Qvp7c8wxxKR"
+				"bzz-raw://1a9f0523b0c2964b93d49081bda09513f2f3b8affe2e51fdf247f3dc2cb61b7e",
+				"dweb:/ipfs/QmdL25Fg6ZqyECpiPwdj7ubvaYNq6MrYdafdmaNZckpreW"
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x5bc0df34731d38674d242450beba5741042ad44b220891a472a27cda584cf5b6",
+			"keccak256": "0xc654be70ede700a5f19919c0cd2619f4231131d05939eba0167f6118f0701c1e",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://56a9948afeab4dd8736bf31fcf6a809c07e266c98fc5a87d38e9a408fa643b2e",
-				"dweb:/ipfs/QmeumVxD47qM7MMqbuScMXBzSH5xwnhWgKJx1Av44nbRJt"
+				"bzz-raw://6e540df8e0e9ca1b3f7f12b09122ef4879bf21d7250fa5b27a3e37c1a758da43",
+				"dweb:/ipfs/QmSDriyReaE82CUGZV3qbnRgN1bpSyvzbwf7tQfMJS2cZ7"
 			]
 		},
 		"contracts/Produce.sol": {
-			"keccak256": "0x1f357eccc74a549534050771420d20c13b982281a499001bb2f36d2fd88167f9",
+			"keccak256": "0xe6fc7834d72a161f8015cc4dbb0c6361317e7ba8230052dded3159667fe22dc3",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://65adc7d24a08dacccfb1985cf77a048d4bbdae3e73d1e6bd85fa435e7e7150b0",
-				"dweb:/ipfs/QmX624UHdK9kJ931wbp6Dmb9faVEq6tDn3vgdCahe6qzfa"
+				"bzz-raw://61a32f5cb02b96b60caa823b45b8f9a092dbc5067e73aaa1dd73eea487aec45a",
+				"dweb:/ipfs/QmRVxSErJYi9QcSMC4Kug1VT7eJkw18RdXKC71A1r323dX"
 			]
 		}
 	},

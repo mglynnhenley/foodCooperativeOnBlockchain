@@ -1,0 +1,145 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "produce",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "farmer",
+						"type": "address"
+					}
+				],
+				"name": "ProduceAddedToMarket",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "produce",
+						"type": "address"
+					}
+				],
+				"name": "ProduceDeletedFromMarket",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_produceHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_orderSize",
+						"type": "uint256"
+					}
+				],
+				"name": "addProduce",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "removeProduce",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Market.sol": "Market"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xa94b34880e3c1b0b931662cb1c09e5dfa6662f31cba80e07c5ee71cd135c9673",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://40fb1b5102468f783961d0af743f91b9980cf66b50d1d12009f6bb1869cea4d2",
+				"dweb:/ipfs/QmYqEbJML4jB1GHbzD4cUZDtJg5wVwNm3vDJq1GbyDus8y"
+			]
+		},
+		"@openzeppelin/contracts/proxy/Clones.sol": {
+			"keccak256": "0x888d64d221d52c31d015b76e50ca1af5ef8ff076550810b49cea6b01d8267a10",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4da0f451fe5aefdb95204dbec4a9448a8a2b00a444864bb5dbf7162da842a0f7",
+				"dweb:/ipfs/QmYciAwNiJzgGMAqSTUANwMjy5HykNUvmkQ5PQhNTRqrB5"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
+				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
+			]
+		},
+		"contracts/Market.sol": {
+			"keccak256": "0x1ad97707698a4c304b905ebffc7802dcb360f063fe9f97fd4ec41ed5cf3d36ac",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://ef407bd4b29346fd4e76087521be482e1426beaccad84dab8be04498257c87b4",
+				"dweb:/ipfs/QmfSy3Z9ZCD1wV2eEPW1p4BLrEKhYd3BY9nKfMuER4xkpS"
+			]
+		},
+		"contracts/Produce.sol": {
+			"keccak256": "0x0c6576e255ff004a5ccac079c1ead212b39fbd8b899d51dfefff19798efdbf44",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://6134b1df5ac7e8b7b995e966c891e799ca8b10078be75eda07e260497b726a0c",
+				"dweb:/ipfs/QmXyrsygJJY1ZU1Stod2bBwKAFHgJAsHHBBhDDyKq4NeXz"
+			]
+		}
+	},
+	"version": 1
+}
