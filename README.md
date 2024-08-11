@@ -33,6 +33,8 @@ Food cooperatives are community-driven organizations that allow members to colle
 3. **Escrow System**: Funds are securely held in an escrow until the order is accepted by the farmer or refunded if the order fails.
 4. **Voting System**: Members can vote to cancel an order if it doesn't meet the required conditions, ensuring democratic participation.
 
+<img width="696" alt="Screenshot 2024-08-11 at 18 48 05" src="https://github.com/user-attachments/assets/21fbfe0a-0f9e-491f-81a4-0046c9baac15">
+
 ## Running the Project with Remix IDE
 
 1. **Compile the Contracts**: Ensure the Solidity files (`Market.sol`, `Produce.sol`, and `GroupOrder.sol`) are compiled. You can do this using the "Solidity Compiler" plugin in Remix.
@@ -55,6 +57,13 @@ Food cooperatives are community-driven organizations that allow members to colle
 
 - **Security**: The system currently assumes a trusted external cooperative organization. Future work could focus on reducing this dependency and further decentralizing the system.
 - **Further Extensions**: Potential extensions include implementing on-chain reputation systems for farmers and integrating oracles for food distribution tracking.
+
+## System design
+
+<img width="462" alt="Screenshot 2024-08-11 at 18 48 30" src="https://github.com/user-attachments/assets/85839731-f26f-4164-85a9-ab833be39aa0">
+<img width="415" alt="Screenshot 2024-08-11 at 18 48 52" src="https://github.com/user-attachments/assets/c01e81c5-c0a4-41d8-9360-4a3683c10286">
+<img width="424" alt="Screenshot 2024-08-11 at 18 48 58" src="https://github.com/user-attachments/assets/2b3e8f40-bc28-4020-b9c7-8c0ebeeb6dc1">
+<img width="507" alt="Screenshot 2024-08-11 at 18 49 04" src="https://github.com/user-attachments/assets/de1edd7e-1c19-4a72-a98f-8124602f2c23">
 
 ## License
 
